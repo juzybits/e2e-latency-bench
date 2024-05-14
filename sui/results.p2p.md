@@ -1,5 +1,22 @@
 These are the results of running `sui/p2p_transfer/index.js`.
 
+### How to run the code
+
+Set environment variables:
+```bash
+export CHAIN_NAME=Sui
+export PING_INTERVAL=1
+export ACC1_PRIVATE_KEY=suiprivkey1...
+export ACC2_PRIVATE_KEY=suiprivkey1...
+```
+
+Install and run the script:
+```bash
+cd sui/p2p_transfer/
+pnpm install
+pnpm start
+```
+
 ### Running the original code
 
 Average time:
@@ -93,7 +110,7 @@ E2E latency for p2p transfer: 0.636390707999999 s
 E2E latency for p2p transfer: 0.6316121669999993 s
 ```
 
-### CHANGE 3: Your credit card number doesn't change
+### CHANGE 3: Your credit card details don't change
 
 Average time:
 `0.5896930278 seconds`

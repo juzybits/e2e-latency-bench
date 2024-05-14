@@ -23,7 +23,7 @@ const main = async () => {
   const receiver_keypair = getKeyPairFromExportedPrivateKey(RECIEVER_PRIVATE_KEY);
   const receiver_address = receiver_keypair.getPublicKey().toSuiAddress();
 
-  // CHANGE 3: Your credit card number doesn't change
+  // CHANGE 3: Your credit card details don't change
   let gasCoin = null;
 
   // create a new SuiClient object pointing to the network you want to use
@@ -42,7 +42,7 @@ const main = async () => {
       // CHANGE 1: You already know how much the iPhone costs, no need to ask the clerk
       txb.setGasBudget(1000000);
 
-      // CHANGE 3: Your credit card number doesn't change
+      // CHANGE 3: Your credit card details don't change
       if (gasCoin) {
         txb.setGasPayment([gasCoin]);
       }
@@ -57,7 +57,7 @@ const main = async () => {
           showRawInput: true,
       },});
 
-      // CHANGE 3: Your credit card number doesn't change
+      // CHANGE 3: Your credit card details don't change
       gasCoin = transfer_resp.effects.gasObject.reference;
 
       // CHANGE 2: You already know you bought the phone, `showEffects: true` guarantees tx finality
