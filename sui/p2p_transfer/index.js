@@ -37,6 +37,9 @@ const main = async () => {
       const [coin] = txb.splitCoins(txb.gas, [txb.pure(1)]);
       txb.transferObjects([coin], receiver_address);
 
+      // CHANGE 1: You already know how much the iPhone costs, no need to ask the clerk
+      txb.setGasBudget(1000000);
+
       const startTime = performance.now();
       const transfer_resp = await suiClient.signAndExecuteTransactionBlock({signer: sender_keypair, transactionBlock: txb, 	options: {
           showBalanceChanges: true,
