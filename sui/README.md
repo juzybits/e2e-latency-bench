@@ -43,7 +43,7 @@ E2E latency for p2p transfer: 0.9724023750000015 s
 E2E latency for p2p transfer: 0.965632749999997 s
 ```
 
-### CHANGE 1: You already know how much the iPhone costs, no need to ask the clerk
+### CHANGE 1: Just bring money with you!
 
 Average time:
 `0.8944658776 seconds`
