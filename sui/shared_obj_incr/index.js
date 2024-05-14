@@ -60,14 +60,14 @@ const main = async () => {
             const latency = (endTime - startTime) / 1000;
             console.log(`E2E latency for shared obj increment: ${latency} s`);
 
-            const latency_metrics_payload = getMetricPayload(COIN_TRANSFER_LATENCY_METRIC_NAME, {"chain_name": CHAIN_NAME}, latency);
-            pushMetrics(latency_metrics_payload);
-            pushMetrics(getMetricPayload(COIN_TRANSFER_SUCCESS_METRIC_NAME, {"chain_name": CHAIN_NAME}, 1));
+            // const latency_metrics_payload = getMetricPayload(COIN_TRANSFER_LATENCY_METRIC_NAME, {"chain_name": CHAIN_NAME}, latency);
+            // pushMetrics(latency_metrics_payload);
+            // pushMetrics(getMetricPayload(COIN_TRANSFER_SUCCESS_METRIC_NAME, {"chain_name": CHAIN_NAME}, 1));
         } catch (error) {
             console.log('Error:', error.message);
             pushMetrics(getMetricPayload(COIN_TRANSFER_SUCCESS_METRIC_NAME, {"chain_name": CHAIN_NAME}, 0));
         }
-    
+
         await sleepAsync(PING_INTERVAL);
     }
 
