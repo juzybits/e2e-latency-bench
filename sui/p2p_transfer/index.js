@@ -49,14 +49,16 @@ const main = async () => {
           showObjectChanges: true,
           showRawInput: true,
       },});
-      const wait_resp = await suiClient.waitForTransactionBlock({ digest: transfer_resp.digest, options: {
-          showBalanceChanges: true,
-          showEffects: true,
-          showEvents: true,
-          showInput: true,
-          showObjectChanges: true,
-          showRawInput: true,
-      }, })
+
+      // CHANGE 2: You already know you bought the phone, `showEffects: true` guarantees tx finality
+      // const wait_resp = await suiClient.waitForTransactionBlock({ digest: transfer_resp.digest, options: {
+      //     showBalanceChanges: true,
+      //     showEffects: true,
+      //     showEvents: true,
+      //     showInput: true,
+      //     showObjectChanges: true,
+      //     showRawInput: true,
+      // }, })
       const endTime = performance.now();
       const latency = (endTime - startTime) / 1000;
       console.log(`E2E latency for p2p transfer: ${latency} s`);
