@@ -92,3 +92,40 @@ E2E latency for p2p transfer: 0.6708460000000014 s
 E2E latency for p2p transfer: 0.636390707999999 s
 E2E latency for p2p transfer: 0.6316121669999993 s
 ```
+
+### CHANGE 3: Your credit card number doesn't change
+
+Average time:
+`0.5896930278 seconds`
+
+Code changes:
+```
+txb.setGasPayment([gasCoin]);
+...
+gasCoin = transfer_resp.effects.gasObject.reference;
+```
+
+Script output:
+```
+E2E latency for p2p transfer: 0.8331939159999999 s
+E2E latency for p2p transfer: 0.6258351670000002 s
+E2E latency for p2p transfer: 0.6353369580000003 s
+E2E latency for p2p transfer: 0.5274629169999998 s
+E2E latency for p2p transfer: 0.6355617500000007 s
+E2E latency for p2p transfer: 0.5187126659999994 s
+E2E latency for p2p transfer: 0.5441076669999984 s
+E2E latency for p2p transfer: 0.530240917000001 s
+E2E latency for p2p transfer: 0.6352299999999995 s
+E2E latency for p2p transfer: 0.6363934590000008 s
+E2E latency for p2p transfer: 0.6318894170000003 s
+E2E latency for p2p transfer: 0.6327853749999994 s
+E2E latency for p2p transfer: 0.6340091250000005 s
+E2E latency for p2p transfer: 0.6372664580000019 s
+E2E latency for p2p transfer: 0.5403262499999982 s
+E2E latency for p2p transfer: 0.5301401670000014 s
+E2E latency for p2p transfer: 0.4650874579999982 s
+E2E latency for p2p transfer: 0.5943778749999983 s
+E2E latency for p2p transfer: 0.5295125829999997 s
+E2E latency for p2p transfer: 0.5347240840000013 s
+E2E latency for p2p transfer: 0.531359375 s
+```

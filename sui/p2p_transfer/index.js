@@ -23,6 +23,8 @@ const main = async () => {
   const receiver_keypair = getKeyPairFromExportedPrivateKey(RECIEVER_PRIVATE_KEY);
   const receiver_address = receiver_keypair.getPublicKey().toSuiAddress();
 
+  // CHANGE 3: Your credit card number doesn't change
+  let gasCoin = null;
 
   // create a new SuiClient object pointing to the network you want to use
   let url = getFullnodeUrl('mainnet');
@@ -40,6 +42,11 @@ const main = async () => {
       // CHANGE 1: You already know how much the iPhone costs, no need to ask the clerk
       txb.setGasBudget(1000000);
 
+      // CHANGE 3: Your credit card number doesn't change
+      if (gasCoin) {
+        txb.setGasPayment([gasCoin]);
+      }
+
       const startTime = performance.now();
       const transfer_resp = await suiClient.signAndExecuteTransactionBlock({signer: sender_keypair, transactionBlock: txb, 	options: {
           showBalanceChanges: true,
@@ -49,6 +56,9 @@ const main = async () => {
           showObjectChanges: true,
           showRawInput: true,
       },});
+
+      // CHANGE 3: Your credit card number doesn't change
+      gasCoin = transfer_resp.effects.gasObject.reference;
 
       // CHANGE 2: You already know you bought the phone, `showEffects: true` guarantees tx finality
       // const wait_resp = await suiClient.waitForTransactionBlock({ digest: transfer_resp.digest, options: {
