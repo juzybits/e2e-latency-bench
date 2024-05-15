@@ -182,3 +182,39 @@ E2E latency for p2p transfer: 0.5246212919999999 s
 E2E latency for p2p transfer: 0.45273716600000263 s
 E2E latency for p2p transfer: 0.510068083000002 s
 ```
+
+### CHANGE 5: Separate build from submit (like Aptos benchmark)
+
+Average time:
+`0.415538981 seconds`
+
+Code changes:
+```
+const bytes = await txb.build({ client: suiClient, limits: {} });
+```
+
+Script output:
+```
+Build latency for p2p transfer: 0.17802070799999994 s; E2E latency for p2p transfer: 0.4188900000000001 s
+Build latency for p2p transfer: 0.0018559590000002118 s; E2E latency for p2p transfer: 0.4148649579999999 s
+Build latency for p2p transfer: 0.0015664170000000014 s; E2E latency for p2p transfer: 0.4279920830000001 s
+Build latency for p2p transfer: 0.0015728330000001733 s; E2E latency for p2p transfer: 0.42552883300000033 s
+Build latency for p2p transfer: 0.001999749999999949 s; E2E latency for p2p transfer: 0.3991153749999994 s
+Build latency for p2p transfer: 0.0016599580000001878 s; E2E latency for p2p transfer: 0.3499934170000006 s
+Build latency for p2p transfer: 0.0015720409999994444 s; E2E latency for p2p transfer: 0.43314304200000153 s
+Build latency for p2p transfer: 0.0006401249999998982 s; E2E latency for p2p transfer: 0.4249043330000004 s
+Build latency for p2p transfer: 0.00241387499999837 s; E2E latency for p2p transfer: 0.42400179200000093 s
+Build latency for p2p transfer: 0.0013185410000005505 s; E2E latency for p2p transfer: 0.4238325839999998 s
+Build latency for p2p transfer: 0.0011419170000008308 s; E2E latency for p2p transfer: 0.4336617499999993 s
+Build latency for p2p transfer: 0.0009532090000011522 s; E2E latency for p2p transfer: 0.4249292079999977 s
+Build latency for p2p transfer: 0.0006981249999989814 s; E2E latency for p2p transfer: 0.42936683300000006 s
+Build latency for p2p transfer: 0.0009914169999974546 s; E2E latency for p2p transfer: 0.3644981250000019 s
+Build latency for p2p transfer: 0.0008724589999983437 s; E2E latency for p2p transfer: 0.39129883300000073 s
+Build latency for p2p transfer: 0.0008113750000011351 s; E2E latency for p2p transfer: 0.4287049580000021 s
+Build latency for p2p transfer: 0.0006563750000022992 s; E2E latency for p2p transfer: 0.43492987499999797 s
+Build latency for p2p transfer: 0.0009196249999986321 s; E2E latency for p2p transfer: 0.4230968750000029 s
+Build latency for p2p transfer: 0.0007177080000001297 s; E2E latency for p2p transfer: 0.42969479199999844 s
+Build latency for p2p transfer: 0.0006151669999999286 s; E2E latency for p2p transfer: 0.4304775419999969 s
+Build latency for p2p transfer: 0.0008104999999995926 s; E2E latency for p2p transfer: 0.4280527079999993 s
+Build latency for p2p transfer: 0.0008414999999986321 s; E2E latency for p2p transfer: 0.3808796660000007 s
+```

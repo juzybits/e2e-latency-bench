@@ -41,6 +41,7 @@ const main = async () => {
       const txb = new TransactionBlock();
       const [coin] = txb.splitCoins(txb.gas, [txb.pure(1)]);
       txb.transferObjects([coin], receiver_address);
+      txb.setSender(sender_keypair.toSuiAddress());
 
       // CHANGE 1: You already know how much the iPhone costs, just bring money with you
       txb.setGasBudget(1000000);
@@ -53,8 +54,12 @@ const main = async () => {
       // CHANGE 4: Tax rates don't change very often
       txb.setGasPrice(gasPrice);
 
+      // CHANGE 5: Separate build from submit (like Aptos benchmark)
+      const buildStartTime = performance.now();
+      const bytes = await txb.build({ client: suiClient, limits: {} });
+
       const startTime = performance.now();
-      const transfer_resp = await suiClient.signAndExecuteTransactionBlock({signer: sender_keypair, transactionBlock: txb, 	options: {
+      const transfer_resp = await suiClient.signAndExecuteTransactionBlock({signer: sender_keypair, transactionBlock: bytes, options: {
           showBalanceChanges: true,
           showEffects: true,
           showEvents: true,
@@ -72,8 +77,9 @@ const main = async () => {
       //     showRawInput: true,
       // }, })
       const endTime = performance.now();
+      const buildLatency = (startTime - buildStartTime) / 1000;
       const latency = (endTime - startTime) / 1000;
-      console.log(`E2E latency for p2p transfer: ${latency} s`);
+      console.log(`Build latency for p2p transfer: ${buildLatency} s; E2E latency for p2p transfer: ${latency} s`);
 
       // CHANGE 3: Your credit card details don't change
       gasCoin = transfer_resp.effects.gasObject.reference;
