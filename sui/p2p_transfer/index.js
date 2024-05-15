@@ -23,15 +23,18 @@ const main = async () => {
   const receiver_keypair = getKeyPairFromExportedPrivateKey(RECIEVER_PRIVATE_KEY);
   const receiver_address = receiver_keypair.getPublicKey().toSuiAddress();
 
-  // CHANGE 3: Your credit card details don't change
-  let gasCoin = null;
-
   // create a new SuiClient object pointing to the network you want to use
   let url = getFullnodeUrl('mainnet');
   if (URL_OVERRIDE) {
       url = URL_OVERRIDE;
   }
   const suiClient = new SuiClient({ url: url });
+
+  // CHANGE 3: Your credit card details don't change
+  let gasCoin = null;
+
+  // CHANGE 4: Tax rates don't change very often
+  const gasPrice = await suiClient.getReferenceGasPrice();
 
   while (true) {
     try {
@@ -47,6 +50,9 @@ const main = async () => {
         txb.setGasPayment([gasCoin]);
       }
 
+      // CHANGE 4: Tax rates don't change very often
+      txb.setGasPrice(gasPrice);
+
       const startTime = performance.now();
       const transfer_resp = await suiClient.signAndExecuteTransactionBlock({signer: sender_keypair, transactionBlock: txb, 	options: {
           showBalanceChanges: true,
@@ -56,10 +62,6 @@ const main = async () => {
           showObjectChanges: true,
           showRawInput: true,
       },});
-
-      // CHANGE 3: Your credit card details don't change
-      gasCoin = transfer_resp.effects.gasObject.reference;
-
       // CHANGE 2: You already know you bought the phone, `showEffects: true` guarantees tx finality
       // const wait_resp = await suiClient.waitForTransactionBlock({ digest: transfer_resp.digest, options: {
       //     showBalanceChanges: true,
@@ -72,6 +74,9 @@ const main = async () => {
       const endTime = performance.now();
       const latency = (endTime - startTime) / 1000;
       console.log(`E2E latency for p2p transfer: ${latency} s`);
+
+      // CHANGE 3: Your credit card details don't change
+      gasCoin = transfer_resp.effects.gasObject.reference;
 
       // const latency_metrics_payload = getMetricPayload(COIN_TRANSFER_LATENCY_METRIC_NAME, {"chain_name": CHAIN_NAME}, latency);
       // pushMetrics(latency_metrics_payload);

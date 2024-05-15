@@ -146,3 +146,39 @@ E2E latency for p2p transfer: 0.5295125829999997 s
 E2E latency for p2p transfer: 0.5347240840000013 s
 E2E latency for p2p transfer: 0.531359375 s
 ```
+
+### CHANGE 4: Tax rates don't change very often
+
+Average time:
+`0.5143824521 seconds`
+
+Code changes:
+```
+const gasPrice = await suiClient.getReferenceGasPrice();
+...
+txb.setGasPrice(gasPrice);
+```
+
+Script output:
+```
+E2E latency for p2p transfer: 0.702635458 s
+E2E latency for p2p transfer: 0.45746379200000004 s
+E2E latency for p2p transfer: 0.49328808299999993 s
+E2E latency for p2p transfer: 0.5329713339999999 s
+E2E latency for p2p transfer: 0.527704334 s
+E2E latency for p2p transfer: 0.5337561670000005 s
+E2E latency for p2p transfer: 0.5320930840000001 s
+E2E latency for p2p transfer: 0.5245033750000002 s
+E2E latency for p2p transfer: 0.5380747909999991 s
+E2E latency for p2p transfer: 0.4721254579999986 s
+E2E latency for p2p transfer: 0.4864260000000013 s
+E2E latency for p2p transfer: 0.5336315419999992 s
+E2E latency for p2p transfer: 0.45037195799999974 s
+E2E latency for p2p transfer: 0.4611282080000019 s
+E2E latency for p2p transfer: 0.5825609589999986 s
+E2E latency for p2p transfer: 0.5178427080000001 s
+E2E latency for p2p transfer: 0.4536452499999978 s
+E2E latency for p2p transfer: 0.5246212919999999 s
+E2E latency for p2p transfer: 0.45273716600000263 s
+E2E latency for p2p transfer: 0.510068083000002 s
+```
